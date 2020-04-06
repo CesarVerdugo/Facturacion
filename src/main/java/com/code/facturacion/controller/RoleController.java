@@ -1,8 +1,9 @@
 package com.code.facturacion.controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,8 +17,8 @@ public class RoleController {
 	private RoleRepository roleRepository;
 	
 	@GetMapping("/roles")
-	public List<Role> roles(){
-		return roleRepository.findAll();
+	public Page<Role> getRoles(Pageable pageable){
+		return roleRepository.findAll(pageable);
 	}
 
 }
