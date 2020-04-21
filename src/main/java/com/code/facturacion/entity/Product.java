@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "products")
 public class Product implements Serializable{
@@ -47,8 +49,13 @@ public class Product implements Serializable{
 	@JoinColumn(name = "id_category", referencedColumnName = "id")
 	private Category category;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "product")
 	private Set<InvoiceDetail> invoiceDetails;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "product")
+	private Set<Multimedia> multimedias;
 	
 	public Product() {
 	}

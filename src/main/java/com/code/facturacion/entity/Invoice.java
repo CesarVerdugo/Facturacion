@@ -3,6 +3,7 @@ package com.code.facturacion.entity;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,9 +11,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -21,8 +26,8 @@ public class Invoice implements Serializable {
     
 	
 	public enum PaymentStatus {
-		pending,
-		cancelled ;
+		PENDING,
+		CANCELLED;
 	}
 	
 	private static final long serialVersionUID = 1L;
@@ -49,8 +54,21 @@ public class Invoice implements Serializable {
 	@Column(name = "payment_status")
 	private PaymentStatus paymentStatus;
 	
-	@OneToMany(mappedBy = "invoice")
+	@JsonIgnore
+	@OneToMany(mappedBy = "invoice", cascade=CascadeType.PERSIST)
 	private Set<InvoiceDetail> invoiceDetails;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "id_customer", referencedColumnName = "id")
+	private User customer;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "id_cashier", referencedColumnName = "id")
+	private User cashier;
+	
+	
 
 
 	public Invoice() {
@@ -124,6 +142,37 @@ public class Invoice implements Serializable {
 
 	public void setPaymentStatus(PaymentStatus paymentStatus) {
 		this.paymentStatus = paymentStatus;
+	}
+	
+	
+
+	public Set<InvoiceDetail> getInvoiceDetails() {
+		return invoiceDetails;
+	}
+
+
+	public void setInvoiceDetails(Set<InvoiceDetail> invoiceDetails) {
+		this.invoiceDetails = invoiceDetails;
+	}
+
+
+	public User getCustomer() {
+		return customer;
+	}
+
+
+	public void setCustomer(User customer) {
+		this.customer = customer;
+	}
+
+
+	public User getCashier() {
+		return cashier;
+	}
+
+
+	public void setCashier(User cashier) {
+		this.cashier = cashier;
 	}
 
 

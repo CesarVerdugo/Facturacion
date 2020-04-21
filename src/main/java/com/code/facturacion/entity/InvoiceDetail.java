@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,9 +25,9 @@ public class InvoiceDetail implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
-	@Min(value = 1)
-    @Column(name = "quantity", nullable = false)
+	
+	
+    @Column(name = "quantity")
 	private int quantity;
 	
 	@NotNull
@@ -85,6 +86,24 @@ public class InvoiceDetail implements Serializable{
 
 	public void setEliminated(boolean isEliminated) {
 		this.isEliminated = isEliminated;
+	}
+	
+	
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Invoice getInvoice() {
+		return invoice;
+	}
+
+	public void setInvoice(Invoice invoice) {
+		this.invoice = invoice;
 	}
 
 	@Override
