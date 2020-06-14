@@ -3,8 +3,8 @@ insert into roles (id,name,description) values (2,'USER',null);
 insert into roles (id,name,description) values (3,'CUSTOMER',null);
 insert into roles (id,name,description) values (4,'PROVIDER',null);
 
-insert into users (id, first_name,email,is_active,is_eliminated) values (null,'cesar','csv@verdugo.com',true,false);
-insert into users (id, first_name,email,is_active,is_eliminated) values(null,'customer','customer@invoice.com',true,false);
+insert into users (id, first_name,email,is_active,is_eliminated,password) values (null,'cesar','csv@verdugo.com',true,false,'$2y$12$7fDLNBepaZ4rieeVqroFF.T51Hc7hX4mvWCuD5PstfynOKuYQR4S6');
+insert into users (id, first_name,email,is_active,is_eliminated,password) values(null,'customer','customer@invoice.com',true,false,'$2y$12$7fDLNBepaZ4rieeVqroFF.T51Hc7hX4mvWCuD5PstfynOKuYQR4S6');
 
 insert into users_has_roles (id_users,id_roles)values (1,1);
 

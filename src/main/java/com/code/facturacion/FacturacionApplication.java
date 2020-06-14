@@ -2,6 +2,8 @@ package com.code.facturacion;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class FacturacionApplication {
@@ -9,5 +11,5 @@ public class FacturacionApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FacturacionApplication.class, args);
 	}
-
+	
 }
