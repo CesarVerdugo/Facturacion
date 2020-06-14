@@ -11,4 +11,7 @@ import com.code.facturacion.entity.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 	Optional<User> findByFirstName(String firstName);
+	Optional<User> findOneByDocumentNumber(String documentNumber);
+	Optional<User> findOneByEmailIgnoreCase(String email);
+	
 }

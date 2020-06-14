@@ -17,6 +17,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
@@ -39,7 +41,8 @@ public class User implements Serializable {
 	@Column(name = "email", length = 254, unique = true)
 	private String email;
 	
-	@Size(min = 3, max = 30)
+	@JsonIgnore
+	@Size(min = 3, max = 100)
 	@Column(name = "password")
 	private String password;
 	
@@ -76,7 +79,6 @@ public class User implements Serializable {
 	public User() {	}
 	
 	
-
 	public User(Long id, String firstName, String lastName, String email,String password,String documentNumber, String phone,
 			boolean isActive, boolean isEliminated) {
 		this.id = id;
@@ -208,6 +210,16 @@ public class User implements Serializable {
 
 	public void setDocumentNumber(String documentNumber) {
 		this.documentNumber = documentNumber;
+	}
+	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
 	}
 
 

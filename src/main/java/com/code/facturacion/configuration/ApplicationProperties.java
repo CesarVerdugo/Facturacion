@@ -28,4 +28,36 @@ public class ApplicationProperties {
 	}
 	
 	
+	@Bean
+	@ConfigurationProperties("application.jwt")
+	public jwt getJWT() {
+		return new jwt();
+	}
+	
+	
+	public class jwt {
+		private String base64Secret ;
+		private long expirationInSeconds ;
+		
+
+		public String getBase64Secret() {
+			return base64Secret;
+		}
+
+		public void setBase64Secret(String base64Secret) {
+			this.base64Secret = base64Secret;
+		}
+
+		public long getExpirationInSeconds() {
+			return expirationInSeconds;
+		}
+
+		public void setExpirationInSeconds(long expirationInSeconds) {
+			this.expirationInSeconds = expirationInSeconds;
+		}
+		
+		
+	}
+	
+	
 }
